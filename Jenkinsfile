@@ -44,9 +44,12 @@ pipeline {
 
         stage('Send Notification') {
             steps {
-                mail to: "${ADMIN_EMAIL}",
-                     subject: "Deployment Successful - Banking App",
-                     body: "The latest version has been deployed successfully!"
+                emailext(
+                    to: "${ADMIN_EMAIL}",
+                    subject: "Deployment Successful - Banking App",
+                    body: "The latest version has been deployed successfully!",
+                    recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']]
+                )
             }
         }
     }
