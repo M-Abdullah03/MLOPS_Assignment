@@ -8,7 +8,6 @@ pipeline {
     }
 
     stages {
-
         stage('Clone Repository') {
             steps {
                 git branch: 'master', url: 'https://github.com/M-Abdullah03/MLOPS_Assignment.git'
@@ -17,32 +16,32 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $DOCKER_IMAGE .'
+                powershell 'docker build -t $env.DOCKER_IMAGE .'
             }
         }
 
         stage('Push Docker Image') {
             steps {
                 withDockerRegistry([credentialsId: DOCKER_CREDENTIALS, url: '']) {
-                    sh 'docker push $DOCKER_IMAGE'
+                    powershell 'docker push $env.DOCKER_IMAGE'
                 }
             }
         }
 
         stage('Deploy to Server') {
             steps {
-                sh '''
+                powershell '''
                 docker stop banking-app || true
                 docker rm banking-app || true
-                docker pull $DOCKER_IMAGE
-                docker run -d --name banking-app -p 8000:8000 $DOCKER_IMAGE
+                docker pull $env.DOCKER_IMAGE
+                docker run -d --name banking-app -p 8000:8000 $env.DOCKER_IMAGE
                 '''
             }
         }
 
         stage('Send Notification') {
             steps {
-                mail to: "$ADMIN_EMAIL",
+                mail to: "$env.ADMIN_EMAIL",
                      subject: "Deployment Successful - Banking App",
                      body: "The latest version has been deployed successfully!"
             }
