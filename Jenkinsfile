@@ -26,7 +26,6 @@ pipeline {
             }
         }
 
-        
         stage('Push Docker Image') {
             steps {
                 withDockerRegistry([credentialsId: DOCKER_CREDENTIALS, url: '']) {
