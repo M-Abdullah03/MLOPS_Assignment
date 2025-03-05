@@ -51,7 +51,7 @@ def withdraw():
     return jsonify({"balance": balance})
 
 
-app.route("/", methods=['GET'])
+@app.route("/", methods=['GET'])
 def home():
     return "Welcome to the Bank API"
 
