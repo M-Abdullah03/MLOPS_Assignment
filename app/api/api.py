@@ -50,5 +50,10 @@ def withdraw():
     balance = accounts[owner].withdraw(amount)
     return jsonify({"balance": balance})
 
+
+app.route("/", methods=['GET'])
+def home():
+    return "Welcome to the Bank API"
+
 # if __name__ == "_main_":
 #     app.run(debug=True)
