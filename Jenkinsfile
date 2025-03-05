@@ -16,21 +16,21 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                powershell 'docker build -t $env.DOCKER_IMAGE .'
+                bat 'docker build -t $env.DOCKER_IMAGE .'
             }
         }
 
         stage('Push Docker Image') {
             steps {
                 withDockerRegistry([credentialsId: DOCKER_CREDENTIALS, url: '']) {
-                    powershell 'docker push $env.DOCKER_IMAGE'
+                    bat 'docker push $env.DOCKER_IMAGE'
                 }
             }
         }
 
         stage('Deploy to Server') {
             steps {
-                powershell '''
+                bat '''
                 docker stop banking-app || true
                 docker rm banking-app || true
                 docker pull $env.DOCKER_IMAGE
