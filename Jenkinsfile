@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'master', url: 'https://github.com/your-repo/banking-app.git'
+                git branch: 'master', url: 'https://github.com/M-Abdullah03/MLOPS_Assignment.git'
             }
         }
 
