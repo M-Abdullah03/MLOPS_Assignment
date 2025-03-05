@@ -19,4 +19,4 @@ jobs:
           pip install -r requirements.txt
           pip install flake8
       - name: Run Flake8
-        run: flake8 banking_app/
+        run: flake8 --config=.flake8 .
