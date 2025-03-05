@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
+
 class BankAccount:
     def __init__(self, owner):
         self.owner = owner
@@ -19,7 +20,9 @@ class BankAccount:
             return self.balance
         return "Insufficient funds"
 
+
 accounts = {}
+
 
 @app.route('/create_account', methods=['POST'])
 def create_account():
@@ -30,6 +33,7 @@ def create_account():
     accounts[owner] = BankAccount(owner)
     return jsonify({"message": "Account created successfully"}), 201
 
+
 @app.route('/deposit', methods=['POST'])
 def deposit():
     data = request.json
@@ -39,6 +43,7 @@ def deposit():
         return jsonify({"message": "Account not found"}), 404
     balance = accounts[owner].deposit(amount)
     return jsonify({"balance": balance})
+
 
 @app.route('/withdraw', methods=['POST'])
 def withdraw():
