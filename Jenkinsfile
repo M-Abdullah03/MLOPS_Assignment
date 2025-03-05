@@ -16,7 +16,10 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t %DOCKER_IMAGE% .'
+                bat '''
+                docker context use default
+                docker build -t %DOCKER_IMAGE% .
+                '''
             }
         }
 
