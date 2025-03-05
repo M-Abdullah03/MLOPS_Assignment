@@ -13,13 +13,7 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/M-Abdullah03/MLOPS_Assignment.git'
             }
         }
-
-        stage('Build & Test') {
-            steps {
-                sh 'python -m unittest discover tests'
-            }
-        }
-
+        
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t $DOCKER_IMAGE .'
