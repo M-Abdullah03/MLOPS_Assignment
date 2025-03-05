@@ -8,14 +8,7 @@ pipeline {
     }
 
     stages {
-        stage('Initialize'){
-            steps{
-                script{
-                    def dockerHome = tool 'muDocker'
-                    env.PATH = "${dockerHome}/bin:${env.PATH}"
-                }
-            }    
-    }
+
         stage('Clone Repository') {
             steps {
                 git branch: 'master', url: 'https://github.com/M-Abdullah03/MLOPS_Assignment.git'
