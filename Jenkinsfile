@@ -16,14 +16,14 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t $env.DOCKER_IMAGE .'
+                bat 'docker build -t %DOCKER_IMAGE% .'
             }
         }
 
         stage('Push Docker Image') {
             steps {
                 withDockerRegistry([credentialsId: DOCKER_CREDENTIALS, url: '']) {
-                    bat 'docker push $env.DOCKER_IMAGE'
+                    bat 'docker push %DOCKER_IMAGE%'
                 }
             }
         }
@@ -33,15 +33,15 @@ pipeline {
                 bat '''
                 docker stop banking-app || true
                 docker rm banking-app || true
-                docker pull $env.DOCKER_IMAGE
-                docker run -d --name banking-app -p 8000:8000 $env.DOCKER_IMAGE
+                docker pull %DOCKER_IMAGE%
+                docker run -d --name banking-app -p 8000:8000 %DOCKER_IMAGE%
                 '''
             }
         }
 
         stage('Send Notification') {
             steps {
-                mail to: "$env.ADMIN_EMAIL",
+                mail to: "%ADMIN_EMAIL%",
                      subject: "Deployment Successful - Banking App",
                      body: "The latest version has been deployed successfully!"
             }
