@@ -44,7 +44,7 @@ pipeline {
 
         stage('Send Notification') {
             steps {
-                mail to: "%ADMIN_EMAIL%",
+                mail to: "${ADMIN_EMAIL}",
                      subject: "Deployment Successful - Banking App",
                      body: "The latest version has been deployed successfully!"
             }
