@@ -21,5 +21,3 @@ jobs:
           pip install flake8
       - name: Run Flake8
         run: flake8 --config=.flake8 .
-
-        
