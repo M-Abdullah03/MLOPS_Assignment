@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'mab3825/banking-app:latest'
+        DOCKER_IMAGE = 'mab3825/gap-prediction-app:latest'
         DOCKER_CREDENTIALS = 'docker-hub-credentials'  // Defined in Jenkins
         ADMIN_EMAIL = 'i211215@nu.edu.pk'
     }
@@ -34,10 +34,10 @@ pipeline {
         stage('Deploy to Server') {
             steps {
                 bat '''
-                docker stop banking-app || true
-                docker rm banking-app || true
+                docker stop gap-prediction-app || true
+                docker rm gap-prediction-app || true
                 docker pull %DOCKER_IMAGE%
-                docker run -d --name banking-app -p 8000:8000 %DOCKER_IMAGE%
+                docker run -d --name gap-prediction-app -p 8000:8000 %DOCKER_IMAGE%
                 '''
             }
         }
