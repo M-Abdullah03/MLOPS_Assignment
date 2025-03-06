@@ -55,7 +55,7 @@ def create_data_from_raw_files():
     grouped = grouped[['region_id', 'time_slot', 'Time', 'gap']]
 
     # Save the grouped data to a CSV file
-    grouped.to_csv('data\gap.csv', index=False)
+    grouped.to_csv(r'data/gap.csv', index=False)
 
     return grouped
 

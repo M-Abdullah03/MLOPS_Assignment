@@ -12,7 +12,7 @@ from .visualization import create_visualization
 def load_model():
     """Load the trained model or train it if it doesn't exist"""
     try:
-        with open('model\model.pkl', 'rb') as file:
+        with open(r'model/model.pkl', 'rb') as file:  # Use raw string
             model = pickle.load(file)
             return model
     except Exception:
@@ -54,7 +54,7 @@ def train_model():
     evaluate_model(model, X_test, y_test, X, y)
 
     # Save the model to a file
-    with open('model/model.pkl', 'wb') as file:
+    with open(r'model/model.pkl', 'rb') as file:  # Use raw string
         pickle.dump(model, file)
 
     return model
