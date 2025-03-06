@@ -37,7 +37,7 @@ pipeline {
                 docker stop gap-prediction-app || true
                 docker rm gap-prediction-app || true
                 docker pull %DOCKER_IMAGE%
-                docker run -d --name gap-prediction-app -p 8000:8000 %DOCKER_IMAGE%
+                docker run -d --name gap-prediction-app -p 5000:5000 %DOCKER_IMAGE%
                 '''
             }
         }
@@ -46,7 +46,7 @@ pipeline {
             steps {
               emailext(
                 to: "${ADMIN_EMAIL}",
-                subject: "Deployment Successful - Banking App",
+                subject: "Deployment Successful - Gap Prediction App",
                 body: "The latest version has been deployed successfully!",
                 recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']]
                )
