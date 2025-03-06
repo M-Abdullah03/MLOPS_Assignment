@@ -1,2 +1,8 @@
+pandas
+scikit-learn
+matplotlib
+numpy
 flask
+pickle-mixin
 pytest
+flake8
