@@ -64,12 +64,21 @@ We implemented **GitHub Actions** to enforce **code quality checks** using **Fla
 
 ## Deployment with Jenkins & Docker
 After successful testing:
-1. Merging into the **Master Branch** triggers a **Jenkins job**.
+1. Merging into the **Master Branch** triggers a **Jenkins job**.![Screenshot 2025-03-06 100318](https://github.com/user-attachments/assets/62a38a8e-801c-4b9a-b33d-377b7c35215b)
+
 2. The Jenkins job:
    - **Containerizes the application** using **Docker**.
-   - **Pushes the Docker image** to **Docker Hub**.
 
-- **Screenshot:**
+   - **Pushes the Docker image** to **Docker Hub**.
+   - - **Screenshot:**
+     ![Screenshot 2025-03-07 041144](https://github.com/user-attachments/assets/66f9e331-1a01-4a6e-abeb-023d7aabdf3f)
+
+
+![Screenshot 2025-03-06 100325](https://github.com/user-attachments/assets/19e99009-13ce-4f4a-9e2c-ecabbc2b9db5)
+
+![Screenshot 2025-03-06 100409](https://github.com/user-attachments/assets/25e169e1-823c-4428-b54a-baace2b34ea0)
+
+
 
 ---
 
