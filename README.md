@@ -7,6 +7,8 @@
 
 
 ## Overview
+This application aims to predict the demand-supply gap for ride requests in a city based on historical data. Uber divides a city into multiple non-overlapping square regions and a day into 144 time slots. 
+For each region and time slot, the demand and supply are recorded. The demand-supply gap is calculated as the difference between these values. To accurately predict this gap, the application utilizes linear regression model trained on past data.
 This repository follows a structured **Git workflow** with automated **code quality checks, feature testing, and deployment** using GitHub Actions, Jenkins, and Docker. 
 ##  Repository Setup & Branching Strategy
 We implemented a **branching strategy** that includes:
@@ -64,29 +66,32 @@ We implemented **GitHub Actions** to enforce **code quality checks** using **Fla
 
 ## Deployment with Jenkins & Docker
 After successful testing:
-1. Merging into the **Master Branch** triggers a **Jenkins job**.![Screenshot 2025-03-06 100318](https://github.com/user-attachments/assets/62a38a8e-801c-4b9a-b33d-377b7c35215b)
+1. Merging into the **Master Branch** triggers a **Jenkins job**.
+   
+   1.1. We expose Jenkins using Ngrok and then add that link to Github webhooks. The webhook is set up so that it sends a call to jenkins every time a branch merges with master. 
+![Screenshot 2025-03-06 100318](https://github.com/user-attachments/assets/62a38a8e-801c-4b9a-b33d-377b7c35215b)
+![Screenshot 2025-03-06 100325](https://github.com/user-attachments/assets/19e99009-13ce-4f4a-9e2c-ecabbc2b9db5)
 
-2. The Jenkins job:
+
+
+3. The Jenkins job:
    - **Containerizes the application** using **Docker**.
 
    - **Pushes the Docker image** to **Docker Hub**.
    - - **Screenshot:**
-     ![Screenshot 2025-03-07 041144](https://github.com/user-attachments/assets/66f9e331-1a01-4a6e-abeb-023d7aabdf3f)
-
-
-![Screenshot 2025-03-06 100325](https://github.com/user-attachments/assets/19e99009-13ce-4f4a-9e2c-ecabbc2b9db5)
-
-![Screenshot 2025-03-06 100409](https://github.com/user-attachments/assets/25e169e1-823c-4428-b54a-baace2b34ea0)
-
+     ![Screenshot 2025-03-07 041144](https://github.com/user-attachments/assets/66f9e331-1a01-4a6e-abeb-023d7aabdf3f) ![Screenshot 2025-03-06 100409](https://github.com/user-attachments/assets/25e169e1-823c-4428-b54a-baace2b34ea0)
 
 
 ---
 
 ## Admin Notification
-Once the deployment is successful:
-- **An email notification** is sent to the admin via Jenkins.
-- This confirms the **successful deployment** and ensures transparency.
-
+Once the deployment is successful **an email notification** is sent to the admin via Jenkins to confirm the **successful deployment**.
+We used the following steps to set up the email notifications in jenkins: 
+   - Installed the Email notification plugin on jenkins.
+   - Configured the plugin to send emails to the target email (in this case masterminder12378@gmail.com)
+   - Added the email text body in the post step of the jenkins job. This means that the email will be sent after all the stages in the jenkins job have been completed.
+   
+![image](https://github.com/user-attachments/assets/3f05f7e1-9557-42b5-b227-1d9ecf637c7c)
 
 
 
